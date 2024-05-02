@@ -20,6 +20,7 @@ Since we are all taking Deep Learning together, Eason took inspiration from the 
 <img src="d1_expert_percentage_vs_epoch.png">
 
 ### b. Results Comparison
+The best performing examples of AL implementation not better than that of non-AL implementation. This means that the learning result is not benefited from seeing the "ground truth" directly in the forward pass or being trained on a much bigger training dataset. This might be from a few different reasons including the restricted input format, the diversity in the training dataset, feature selections & abstractions, and etc.
 
 ### c. Results Comparison Reasoning
 The non-AL implementation did achieve comparable results on coffee d0 dataset but was unable to improve the task performance on coffee d1 dataset. 
@@ -37,8 +38,8 @@ The non-AL implementation did achieve comparable results on coffee d0 dataset bu
 ### a. Graph
 <img src="d0_policy_vs_epoch.png">
 
-### b. 
+### b. Performance Across Train/Test Datasets
+The AL performance on the training set is not particularly benefited from having a bigger training set and more epochs (>> 50), though loss achieves nearly the same value as the non-AL implementation which can complete the coffee task. The loss is about ~0.004 higher on the test dataset but not varying across different distributions.
 
 ## 4. Hypothesis and Modifications
-
-
+As discussed in 2a, the AL performance is as expected mostly because of the limited types of active input we can provide for the model. If given more time, I would experiment with different combinations of the training features and augment the demonstrations in some way such that the teacher forcing part would take in augmented actions between the "ground truth" and the actions action to minimize exposure bias from teacher forcing.
